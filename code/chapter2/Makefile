@@ -1,6 +1,7 @@
 CC = gcc
 ASM = nasm
 LD = ld
+MOUNT_POINT = /mnt/lucasOS
 
 CC_FLAGS = -c -Wall -m32 -ggdb -gstabs+ -nostdinc -fno-builtin -fno-stack-protector
 LD_FLAGS = -T link.ld -m elf_i386 -nostdlib
@@ -22,7 +23,8 @@ link:
 
 .PHONY: update_kernel
 update_kernel:
-	@echo '将kernel拷贝到主引导记录后， 最终生成OS启动镜像lucasOS.img'
+	@echo '将kernel拷贝到软盘镜像..'
+	@if [ ! -d $(MOUNT_POINT) ]; then mkdir $(MOUNT_POINT); fi  # 挂载点不存在则创建
 	sudo mount lucasOS.img /mnt/lucasOS
 	sudo cp kernel /mnt/lucasOS/kernel
 	sleep 1
