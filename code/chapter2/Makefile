@@ -12,7 +12,7 @@ boot.o: boot.asm
 	@echo '编译boot, 生成GRUB需要的信息..'
 	$(ASM) -f elf boot.asm
 
-kernerl.o: kernel.c
+kernel.o: kernel.c
 	@echo '编译kernel..'
 	$(CC) $(CC_FLAGS) kernel.c -o kernel.o
 
